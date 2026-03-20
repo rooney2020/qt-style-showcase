@@ -120,8 +120,10 @@ def combobox_style():
         width: 28px; border: none;
     }}
     QComboBox::down-arrow {{
-        image: url({_asset('arrow-down.svg')});
-        width: 12px; height: 12px;
+        width: 0; height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid {C['text']};
     }}
     QComboBox QAbstractItemView {{
         background: {C['surface0']}; color: {C['text']};
@@ -296,12 +298,16 @@ def spinbox_style():
         background: transparent;
     }}
     QSpinBox::up-arrow, QDoubleSpinBox::up-arrow {{
-        image: url({_asset('arrow-up.svg')});
-        width: 10px; height: 10px;
+        width: 0; height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 5px solid {C['text']};
     }}
     QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {{
-        image: url({_asset('arrow-down.svg')});
-        width: 10px; height: 10px;
+        width: 0; height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 5px solid {C['text']};
     }}
     QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover {{
         background: {C['surface1']};
