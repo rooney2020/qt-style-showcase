@@ -130,7 +130,9 @@ class MainWindow(QMainWindow):
         if theme_name in THEMES:
             C.update(THEMES[theme_name])
             from main import apply_dark_palette
+            from showcase.theme import _write_themed_svgs
             apply_dark_palette(QApplication.instance())
+            _write_themed_svgs()
             self.setStyleSheet(global_style())
             self._rebuild_pages()
 

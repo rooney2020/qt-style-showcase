@@ -9,6 +9,24 @@ def _asset(name):
     return os.path.join(_ASSETS_DIR, name).replace("\\", "/")
 
 
+def _write_themed_svgs():
+    """Rewrite SVG assets with current theme colors."""
+    color = C['text']
+    down = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" fill="none" stroke="{color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    up = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polyline points="2,8 6,4 10,8" fill="none" stroke="{color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    check = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5" fill="none" stroke="{C["crust"]}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    os.makedirs(_ASSETS_DIR, exist_ok=True)
+    with open(os.path.join(_ASSETS_DIR, 'arrow-down.svg'), 'w') as f:
+        f.write(down)
+    with open(os.path.join(_ASSETS_DIR, 'arrow-up.svg'), 'w') as f:
+        f.write(up)
+    with open(os.path.join(_ASSETS_DIR, 'check.svg'), 'w') as f:
+        f.write(check)
+
+
+_write_themed_svgs()
+
+
 def _hex_to_rgba(hex_color, alpha=1.0):
     r, g, b = int(hex_color[1:3], 16), int(hex_color[3:5], 16), int(hex_color[5:7], 16)
     return f"rgba({r},{g},{b},{alpha})"
@@ -120,10 +138,8 @@ def combobox_style():
         width: 28px; border: none;
     }}
     QComboBox::down-arrow {{
-        width: 0; height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 6px solid {C['text']};
+        image: url({_asset('arrow-down.svg')});
+        width: 12px; height: 12px;
     }}
     QComboBox QAbstractItemView {{
         background: {C['surface0']}; color: {C['text']};
@@ -298,16 +314,12 @@ def spinbox_style():
         background: transparent;
     }}
     QSpinBox::up-arrow, QDoubleSpinBox::up-arrow {{
-        width: 0; height: 0;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-bottom: 5px solid {C['text']};
+        image: url({_asset('arrow-up.svg')});
+        width: 10px; height: 10px;
     }}
     QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {{
-        width: 0; height: 0;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 5px solid {C['text']};
+        image: url({_asset('arrow-down.svg')});
+        width: 10px; height: 10px;
     }}
     QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover {{
         background: {C['surface1']};
