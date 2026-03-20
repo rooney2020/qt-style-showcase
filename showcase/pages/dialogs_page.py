@@ -1,7 +1,9 @@
+import os
+
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QDialog,
     QLineEdit, QComboBox, QCheckBox, QFormLayout, QFrame,
-    QGraphicsDropShadowEffect,
+    QGraphicsDropShadowEffect, QFileDialog,
 )
 from PyQt5.QtGui import QColor
 from PyQt5.QtCore import Qt
@@ -9,7 +11,7 @@ from PyQt5.QtCore import Qt
 from showcase.theme import (
     btn_primary, btn_secondary, btn_danger, btn_outline,
     dialog_style, lineedit_style, combobox_style, checkbox_style,
-    scrollbar_style, style_combobox,
+    scrollbar_style, style_combobox, file_dialog_style,
 )
 from showcase.constants import C
 
@@ -162,6 +164,24 @@ class DialogsPage(QWidget):
         row.addStretch()
         layout.addLayout(row)
 
+        layout.addWidget(self._section("文件选择器 QFileDialog"))
+        fd_desc = QLabel(
+            "与 FastPanel 桌面模式一致：DontUseNativeDialog + file_dialog_style()，"
+            "含表头角区、列表选中与滚动条。"
+        )
+        fd_desc.setWordWrap(True)
+        fd_desc.setStyleSheet(f"color: {C['subtext0']}; font-size: 13px;")
+        layout.addWidget(fd_desc)
+        fd_row = QHBoxLayout()
+        fd_row.setSpacing(12)
+        btn_fd = QPushButton("📂 打开文件选择器示例")
+        btn_fd.setStyleSheet(btn_secondary())
+        btn_fd.setCursor(Qt.PointingHandCursor)
+        btn_fd.clicked.connect(self._show_file_dialog_demo)
+        fd_row.addWidget(btn_fd)
+        fd_row.addStretch()
+        layout.addLayout(fd_row)
+
         # --- 内嵌对话框示例 ---
         layout.addWidget(self._section("内嵌预览"))
         preview = QLabel("（下方展示对话框的静态预览）")
@@ -253,6 +273,15 @@ class DialogsPage(QWidget):
             "此操作不可恢复，项目所有数据将被永久删除。",
             danger=True,
         )
+        dlg.exec_()
+
+    def _show_file_dialog_demo(self):
+        dlg = QFileDialog(self, "选择文件", os.path.expanduser("~"), "JSON (*.json)")
+        dlg.setOption(QFileDialog.DontUseNativeDialog, True)
+        dlg.setStyleSheet(file_dialog_style())
+        dlg.resize(720, 480)
+        for combo in dlg.findChildren(QComboBox):
+            style_combobox(combo)
         dlg.exec_()
 
     def _heading(self, text):

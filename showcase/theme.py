@@ -183,12 +183,25 @@ def style_combobox(combo):
             return
         container = view.parent()
         if container and container is not combo:
+            bg = QColor(C['surface0'])
+            fg = QColor(C['text'])
             pal = container.palette()
-            pal.setColor(QPalette.Window, QColor(C['surface0']))
-            pal.setColor(QPalette.Base, QColor(C['surface0']))
-            pal.setColor(QPalette.Text, QColor(C['text']))
+            for role in (QPalette.Window, QPalette.Base, QPalette.AlternateBase,
+                         QPalette.Button):
+                pal.setColor(QPalette.Active, role, bg)
+                pal.setColor(QPalette.Inactive, role, bg)
+            for role in (QPalette.WindowText, QPalette.Text, QPalette.ButtonText):
+                pal.setColor(QPalette.Active, role, fg)
+                pal.setColor(QPalette.Inactive, role, fg)
+            pal.setColor(QPalette.Highlight, QColor(C['surface1']))
+            pal.setColor(QPalette.HighlightedText, fg)
             container.setPalette(pal)
             container.setAutoFillBackground(True)
+            container.setStyleSheet(
+                f"QFrame {{ background: {C['surface0']}; border: 1px solid {C['surface1']}; border-radius: 6px; }}"
+            )
+            view.setPalette(pal)
+            view.setAutoFillBackground(True)
             view.setStyleSheet(_combobox_popup_style())
 
     def _show():
@@ -627,6 +640,85 @@ def badge_style(color_key='blue'):
         border-radius: 4px; font-size: 11px; font-weight: bold;
         padding: 2px 8px;
     }}
+    """
+
+
+def file_dialog_style():
+    """非原生 QFileDialog 全量样式（与 FastPanel 桌面模式 `_file_dialog_style` 对齐，便于对照调试）。"""
+    sel_bg = _hex_to_rgba(C["blue"], 0.2)
+    arrow = _asset("arrow-down.svg").replace("\\", "/")
+    return f"""
+        QFileDialog {{ background: {C['base']}; color: {C['text']}; }}
+        QLabel {{ color: {C['text']}; font-size: 13px; }}
+        QLineEdit {{
+            background: {C['surface0']}; color: {C['text']};
+            border: 1px solid {C['surface1']}; border-radius: 8px;
+            padding: 6px 12px; font-size: 13px;
+            selection-background-color: {C['blue']};
+            selection-color: {C['crust']};
+        }}
+        QLineEdit:focus {{ border-color: {C['blue']}; }}
+        QComboBox {{
+            background: {C['surface0']}; color: {C['text']};
+            border: 1px solid {C['surface1']}; border-radius: 8px;
+            padding: 6px 12px; font-size: 13px; min-height: 20px;
+        }}
+        QComboBox:hover {{ border-color: {C['surface2']}; }}
+        QComboBox::drop-down {{
+            subcontrol-origin: padding; subcontrol-position: top right;
+            width: 28px; border: none; border-radius: 8px;
+        }}
+        QComboBox::down-arrow {{ image: url({arrow}); width: 12px; height: 8px; }}
+        QComboBox QAbstractItemView {{
+            background: {C['surface0']}; color: {C['text']};
+            border: 1px solid {C['surface1']}; border-radius: 8px;
+            selection-background-color: {C['surface1']};
+            selection-color: {C['text']};
+            outline: none; padding: 4px;
+        }}
+        QComboBox QAbstractItemView::item {{
+            padding: 6px 12px; border-radius: 4px; margin: 1px;
+        }}
+        QComboBox QAbstractItemView::item:hover {{ background: {C['surface1']}; }}
+        QTreeView, QListView, QTableView {{
+            background: {C['base']}; color: {C['text']};
+            border: 1px solid {C['surface0']}; border-radius: 8px;
+            outline: none; font-size: 13px;
+            selection-background-color: {sel_bg};
+            selection-color: {C['text']};
+        }}
+        QTreeView::item, QListView::item {{
+            padding: 4px 8px; border-radius: 4px;
+        }}
+        QTreeView::item:hover, QListView::item:hover {{ background: {C['surface0']}; }}
+        QTreeView::item:selected, QListView::item:selected {{
+            background: {sel_bg}; color: {C['text']};
+        }}
+        QHeaderView {{ background: {C['mantle']}; }}
+        QHeaderView::section {{
+            background: {C['mantle']}; color: {C['subtext0']};
+            border: none; border-bottom: 1px solid {C['surface0']};
+            padding: 6px 10px; font-size: 12px; font-weight: bold;
+        }}
+        QTableCornerButton::section {{ background: {C['mantle']}; border: none; }}
+        QToolButton {{
+            background: {C['surface0']}; color: {C['text']};
+            border: none; border-radius: 6px;
+            padding: 4px; min-width: 28px; min-height: 28px;
+        }}
+        QToolButton:hover {{ background: {C['surface1']}; }}
+        QToolButton:pressed {{ background: {C['surface2']}; }}
+        QPushButton {{
+            background: {C['blue']}; color: {C['crust']};
+            border: none; border-radius: 8px;
+            padding: 8px 20px; font-size: 13px; font-weight: bold;
+        }}
+        QPushButton:hover {{ background: {C['lavender']}; }}
+        QPushButton:pressed {{ background: {C['sky']}; }}
+        QPushButton:disabled {{ background: {C['surface1']}; color: {C['overlay0']}; }}
+        QSplitter::handle {{ background: {C['surface0']}; }}
+        QFrame {{ color: {C['text']}; }}
+        {scrollbar_style(6)}
     """
 
 

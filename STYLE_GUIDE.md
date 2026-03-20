@@ -612,6 +612,12 @@ def dialog_style():
 - **信息确认框**：带 ℹ️ 图标，用于确认普通操作
 - **危险确认框**：带 ⚠️ 图标和红色确认按钮，用于破坏性操作
 
+### 文件选择器 QFileDialog（非原生）
+
+**展厅入口**：侧边栏 **「弹窗与对话框」** → **「📂 打开文件选择器示例」**。
+
+实现要点：`QFileDialog.DontUseNativeDialog` + `showcase.theme.file_dialog_style()`（与 FastPanel `fastpanel.theme._file_dialog_style` 对齐）。列表选中背景使用 `_hex_to_rgba(C['blue'], 0.2)`；表头右上角白块用 `QHeaderView` 背景 + `QTableCornerButton::section`；滚动条统一 `scrollbar_style(6)`。
+
 ---
 
 ## 消息通知 Toast
