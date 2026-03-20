@@ -1,0 +1,61 @@
+THEMES = {
+    "Catppuccin Mocha": {
+        "base": "#1e1e2e", "mantle": "#181825", "crust": "#11111b",
+        "surface0": "#313244", "surface1": "#45475a", "surface2": "#585b70",
+        "overlay0": "#6c7086", "overlay1": "#7f849c", "overlay2": "#9399b2",
+        "text": "#cdd6f4", "subtext0": "#a6adc8", "subtext1": "#bac2de",
+        "blue": "#89b4fa", "sky": "#89dceb", "teal": "#94e2d5",
+        "green": "#a6e3a1", "red": "#f38ba8", "peach": "#fab387",
+        "lavender": "#b4befe", "yellow": "#f9e2af", "mauve": "#cba6f7",
+        "maroon": "#eba0ac", "flamingo": "#f2cdcd", "rosewater": "#f5e0dc",
+        "pink": "#f5c2e7", "sapphire": "#74c7ec",
+    },
+    "Catppuccin Latte": {
+        "base": "#eff1f5", "mantle": "#e6e9ef", "crust": "#dce0e8",
+        "surface0": "#ccd0da", "surface1": "#bcc0cc", "surface2": "#acb0be",
+        "overlay0": "#9ca0b0", "overlay1": "#8c8fa1", "overlay2": "#7c7f93",
+        "text": "#4c4f69", "subtext0": "#6c6f85", "subtext1": "#5c5f77",
+        "blue": "#1e66f5", "sky": "#04a5e5", "teal": "#179299",
+        "green": "#40a02b", "red": "#d20f39", "peach": "#fe640b",
+        "lavender": "#7287fd", "yellow": "#df8e1d", "mauve": "#8839ef",
+        "maroon": "#e64553", "flamingo": "#dd7878", "rosewater": "#dc8a78",
+        "pink": "#ea76cb", "sapphire": "#209fb5",
+    },
+    "Nord": {
+        "base": "#2e3440", "mantle": "#292e39", "crust": "#242933",
+        "surface0": "#3b4252", "surface1": "#434c5e", "surface2": "#4c566a",
+        "overlay0": "#616e88", "overlay1": "#6e7a94", "overlay2": "#7b87a0",
+        "text": "#eceff4", "subtext0": "#d8dee9", "subtext1": "#e5e9f0",
+        "blue": "#88c0d0", "sky": "#81a1c1", "teal": "#8fbcbb",
+        "green": "#a3be8c", "red": "#bf616a", "peach": "#d08770",
+        "lavender": "#b48ead", "yellow": "#ebcb8b", "mauve": "#b48ead",
+        "maroon": "#c9727d", "flamingo": "#d9a1a6", "rosewater": "#e5c5c8",
+        "pink": "#c9a1c9", "sapphire": "#5e81ac",
+    },
+    "Dracula": {
+        "base": "#282a36", "mantle": "#21222c", "crust": "#191a21",
+        "surface0": "#343746", "surface1": "#414558", "surface2": "#4d5269",
+        "overlay0": "#6272a4", "overlay1": "#7082b4", "overlay2": "#7e92c4",
+        "text": "#f8f8f2", "subtext0": "#cfd1d9", "subtext1": "#e4e5eb",
+        "blue": "#8be9fd", "sky": "#8be9fd", "teal": "#50fa7b",
+        "green": "#50fa7b", "red": "#ff5555", "peach": "#ffb86c",
+        "lavender": "#bd93f9", "yellow": "#f1fa8c", "mauve": "#ff79c6",
+        "maroon": "#ff6e6e", "flamingo": "#ffa6c9", "rosewater": "#ffc9de",
+        "pink": "#ff79c6", "sapphire": "#6272a4",
+    },
+    "One Dark": {
+        "base": "#282c34", "mantle": "#21252b", "crust": "#1b1f27",
+        "surface0": "#2c313a", "surface1": "#363c46", "surface2": "#3e4451",
+        "overlay0": "#5c6370", "overlay1": "#6b7280", "overlay2": "#7a8390",
+        "text": "#abb2bf", "subtext0": "#8b929e", "subtext1": "#9da3af",
+        "blue": "#61afef", "sky": "#56b6c2", "teal": "#56b6c2",
+        "green": "#98c379", "red": "#e06c75", "peach": "#d19a66",
+        "lavender": "#c678dd", "yellow": "#e5c07b", "mauve": "#c678dd",
+        "maroon": "#e88388", "flamingo": "#eda5aa", "rosewater": "#f2c2c5",
+        "pink": "#e48cbe", "sapphire": "#4d78a5",
+    },
+}
+
+DEFAULT_THEME = "Catppuccin Mocha"
+
+C = dict(THEMES[DEFAULT_THEME])
